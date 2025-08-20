@@ -1,46 +1,65 @@
 import React, { useState } from "react"
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const AllList = () => {
-    // estado para almacenar las tareas en el array
-
     const [tasks, setTaks] = useState([]);
+    const [newTasks, setNewTaks] = useState("");
 
-    // estado para almacenar lo que el usuario escribe en el input
-
-    const [newTasks, setNewTaks] = useState("")
-
-    // funcion para anadir tarea
     const addtaks = () => {
-        (newTasks)
+        if (newTasks.trim() === "") return;
+        setTaks([...tasks, newTasks]);
+        setNewTaks("");
     }
 
+    const keyEnter = (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            addtaks();
+        }
+    }
 
     return (
-        <div className="container">
-            <input value={newTasks} onChange={(e) => setNewTaks(e.target.value)} />
-            <button onClick={() => { setTaks([...tasks, newTasks]); setNewTaks("") }}>agregar</button>
-            <hr />
-            <ul>
-                {tasks.map((l, li) =>
-                    <li key={`li_${li}`}>
-                        <input type="checkbox" />
-                        <span>{l}</span>
-                        <button onClick={() => setTaks(tasks.filter((_, i) => i !== li))}>delete</button>
-                    </li>
-                )
-                }
+        <div className="container mt-4">
+            <div className="input-group mb-3">
+                <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Añadir tarea..."
+                    value={newTasks}
+                    onChange={(e) => setNewTaks(e.target.value)}
+                    onKeyDown={keyEnter}
+                />
+                <button className="btn btn-primary" onClick={addtaks}>
+                    Agregar
+                </button>
+            </div>
 
-            </ul>
-           <div className="taks-counter">
-            Items: <strong>{tasks.length}</strong>
-           </div>
+            {tasks.length === 0 ? (
+                <p className="text-muted">No hay tareas, ¡añade algunas!</p>
+            ) : (
+                <ul className="list-group mb-3">
+                    {tasks.map((task, index) => (
+                        <li key={index} className="list-group-item d-flex justify-content-between align-items-center">
+                            <div>
+                                <input type="checkbox" className="form-check-input me-2" />
+                                <span>{task}</span>
+                            </div>
+                            <button
+                                className="btn btn-danger btn-sm"
+                                onClick={() => setTaks(tasks.filter((_, i) => i !== index))}
+                            >
+                                Delete
+                            </button>
+                        </li>
+                    ))}
+                </ul>
+            )}
+
+            <div className="text-end">
+                <strong>Items:</strong> {tasks.length}
+            </div>
         </div>
-
-
-
     )
-
 }
 
-export default AllList
-
+export default AllList;

@@ -12,10 +12,10 @@ import AllList from "./AllList";
 
 const Home = () => {
 	return (
-		<div className="text-center">
+		<div className="text-center mt-4">
             <ul>
 
-				<h1>Lista de Tarea</h1>
+				<h1 className="titulo-tareas">Lista de Tarea</h1>
 				<br />
 				<br />
 				<br />

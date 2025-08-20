@@ -1,89 +1,29 @@
-
-body {
-  font-family: Arial, sans-serif;
-  background: #f4f4f9;
-  margin: 0;
-  padding: 0;
+/* Estilo del título */
+h1.titulo-tareas {
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #0d6efd; /* Azul Bootstrap */
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.2);
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+    transition: color 0.3s;
 }
 
-.container {
-  background: rgb(89, 231, 253);
-  max-width: 400px;
-  margin: 50px auto;
-  padding: 20px 25px;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+/* Efecto al pasar el mouse sobre el título */
+h1.titulo-tareas:hover {
+    color: #0b5ed7;
+    cursor: default;
 }
 
-h1 {
-  text-align: center;
-  color: black;
-  margin-top: 70px;
+/* Botón eliminar oculto por defecto */
+.list-group-item .btn-danger {
+    opacity: 0;
+    transition: opacity 0.3s;
 }
 
-.input-group {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 15px;
-}
-
-.input-group input {
-  flex: 1;
-  padding: 10px;
-  border: 2px solid #ddd;
-  border-radius: 8px;
-  outline: none;
-  transition: 0.3s;
-}
-
-.input-group input:focus {
-  border-color: #4cafef;
-}
-
-.input-group button {
-  background: #4cafef;
-  color: white;
-  border: none;
-  padding: 10px 14px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.input-group button:hover {
-  background: #3a9edc;
-}
-
-ul {
-  list-style: none;
-  padding: 0;
-}
-
-ul li {
-  background: #fafafa;
-  padding: 10px;
-  margin-bottom: 8px;
-  display: flex;
-  align-items: center;
-  border-radius: 8px;
-  border: 1px solid #eee;
-}
-
-ul li input[type="checkbox"] {
-  margin-right: 10px;
-}
-
-ul li span {
-  flex: 1;
-}
-
-ul li .delete {
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  font-size: 18px;
-}
-
-ul li .delete:hover {
-  color: red;
+/* Mostrar botón solo al hacer hover sobre la tarea */
+.list-group-item:hover .btn-danger {
+ opacity:1;
 }
